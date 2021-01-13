@@ -12,8 +12,8 @@ class HomeVideo extends Film {
     private int bluraySales;
 
     // Constructors
-    HomeVideo(int rank, String title, long gross, String releaseDate, int allSales, int vhsSales, int dvdSales, int bluraySales) {
-        super(rank, title, gross);
+    HomeVideo(int rank, String title, long gross, String releaseDate, int year, int allSales, int vhsSales, int dvdSales, int bluraySales) {
+        super(rank, title, gross, year);
         this.releaseDate = releaseDate;
         this.allSales = allSales;
         this.vhsSales = vhsSales;
@@ -92,7 +92,10 @@ class HomeVideo extends Film {
 
             String title = lineScanner.next();
 
-            String date = lineScanner.next();
+            String releaseDate = lineScanner.next();
+            int yearStartIndex = releaseDate.lastIndexOf(",");
+            String yearString = releaseDate.substring(yearStartIndex + 1, releaseDate.length()).trim();
+            int year = Integer.parseInt(yearString);
 
             String allSales = lineScanner.next();
             allSales = allSales.replaceAll(",", "").trim();
@@ -132,7 +135,7 @@ class HomeVideo extends Film {
             revenue = revenue.substring(1, revenue.indexOf("[")).replaceAll(",", "").trim();
             long revenueNum = Long.parseLong(revenue);
 
-            new HomeVideo(ranking, title, revenueNum, date, salesNum, vhsSalesNum, dvdSalesNum, bluraySalesNum);
+            new HomeVideo(ranking, title, revenueNum, releaseDate, year, salesNum, vhsSalesNum, dvdSalesNum, bluraySalesNum);
             ranking = ranking + 1;
         }
     }

@@ -8,12 +8,14 @@ class Film {
     private int rank;
     private String title;
     private long gross;
+    private int year;
 
     // Constructors
-    Film(int rank, String title, long gross) {
+    Film(int rank, String title, long gross, int year) {
         this.rank = rank;
         this.title = title;
         this.gross = gross;
+        this.year = year;
 
         // store the new object in the films ArrayList
         if (films == null) {
@@ -46,6 +48,14 @@ class Film {
 
     void setGross(long gross) {
         this.gross = gross;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
     }
 
     // Methods
